@@ -1,40 +1,18 @@
-class cliente{//classe
-    nome;
-    cpf;
-}
+import {Cliente} from "./Cliente.js"
+import {contaCorrente} from "./ContaCorrente.js"
 
-class contaCorrente{
-    agencia;
-    #saldo = 0;
+// const cliente2 = new Cliente();
+// cliente2.nome = "Alice";
+// cliente2.cpf = 25634712453;
+const cliente1 = new Cliente("Ricardo", 25632147563);//novo Objeto ou instância
+const cliente2 = new Cliente("Alice", 25634712453);
 
-    sacar(valor){//método ou função
-        if(this.#saldo >= valor){
-            this.#saldo -= valor;
-            console.log(this.#saldo);
-        }
-    }
+const contaCorrenteRicardo = new contaCorrente(1001, cliente1);
+const conta2 = new contaCorrente(102, cliente2);
 
-    depositar(valor){
-        if(valor > 0){
-            this.#saldo += valor;
-            console.log(this.#saldo);
-        }
-    }
-}
+contaCorrenteRicardo.depositar(1000);
+contaCorrenteRicardo.transferir(200, conta2);
 
-const cliente1 = new cliente();//novo Objeto ou instância
-cliente1.nome = "Ricardo";
-cliente1.cpf = 25632147563;
+console.log("Número de contas: " + contaCorrente.numeroDeContas);
 
-const cliente2 = new cliente();
-cliente2.nome = "Alice";
-cliente2.cpf = 25634712453;
-
-const contaCorrenteRicardo = new contaCorrente();
-contaCorrenteRicardo.agencia = 1001;
-
-contaCorrenteRicardo.depositar(100);
-contaCorrenteRicardo.sacar(50);
-
-console.log(contaCorrenteRicardo.saldo);
-console.log(cliente1);
+//console.log(contaCorrenteRicardo.#saldo);Não consigo ver por quê é um atributo privado
